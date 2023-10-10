@@ -19,10 +19,10 @@ import { DialogClose } from "@radix-ui/react-dialog";
 
 const diagramTypes: DiagramType[] = [
   {
-    typeName: 'flowchart',
-    displayName: 'Flowchart',
+    typeName: 'core',
+    displayName: 'General',
     thumbnailSrc: '/',
-    description: 'Flowchart diagram'
+    description: 'General purpose diagram'
   },
   {
     typeName: 'flowchart',
@@ -31,22 +31,22 @@ const diagramTypes: DiagramType[] = [
     description: 'Flowchart diagram'
   },
   {
-    typeName: 'flowchart',
-    displayName: 'Flowchart',
+    typeName: 'mindmap',
+    displayName: 'Mind Map',
     thumbnailSrc: '/',
-    description: 'Flowchart diagram'
+    description: 'Mind mapping'
   },
   {
-    typeName: 'flowchart',
-    displayName: 'Flowchart',
+    typeName: 'network',
+    displayName: 'Network Diagram',
     thumbnailSrc: '/',
-    description: 'Flowchart diagram'
+    description: 'Network diagram'
   },
   {
-    typeName: 'flowchart',
-    displayName: 'Flowchart',
+    typeName: 'orgchart',
+    displayName: 'Org Chart',
     thumbnailSrc: '/',
-    description: 'Flowchart diagram'
+    description: 'Organizational chart'
   },
 ]
 
