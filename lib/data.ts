@@ -4,3 +4,10 @@ interface Diagram {
   diagramType: string,
   diagramContent?: object;
 }
+
+interface DiagramType {
+  typeName: string,
+  displayName: string,
+  thumbnailSrc: string,
+  description?: string
+}

@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { PlusIcon } from "@radix-ui/react-icons";
 import DiagramList from "./components/diagram-list";
+import NewDiagramButton from "./components/new-diagram-button";
 
 export default function Home() {
   return (
@@ -16,11 +15,9 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center">
-        <Button size={"lg"}>
-          <PlusIcon className="mr-2 h-4 w-4" />
-          Create a diagram!
-        </Button>
+        <NewDiagramButton />
       </div>
+
 
       <Separator className="my-10" decorative={true} />
 
