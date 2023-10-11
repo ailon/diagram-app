@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { useSearchParams } from "next/navigation";
 import { Diagram } from "@/lib/data";
 import { DiagramStore } from "@/lib/db";
+import { DiagramState } from "@markerjs/mjs-diagram";
 // import DiagramEditor from './components/editor';
 
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
@@ -20,13 +21,27 @@ const DiagramEditor = dynamic(() => import("./components/editor"), {
 interface Props {}
 
 const EditDiagram = (props: Props) => {
-  const nameChangeHandler: React.ChangeEventHandler<HTMLInputElement> = (
+  const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
+  const [displayName, setDisplayName] = useState<string>("");
+
+  const nameChangeHandler: React.ChangeEventHandler<HTMLInputElement> = async (
     el
   ) => {
-    console.log(el.target.value);
+    if (diagram) {
+      const diagramCopy: Diagram = Object.assign(diagram);
+      diagramCopy.displayName = el.target.value;
+      await DiagramStore.saveDiagram(diagramCopy);
+      setDisplayName(diagramCopy.displayName);
+    }
   };
 
-  const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
+  const diagramChangeHandler = async (diagramContent: DiagramState) => {
+    if (diagram) {
+      const diagramCopy: Diagram = Object.assign(diagram);
+      diagramCopy.diagramContent = diagramContent;
+      await DiagramStore.saveDiagram(diagramCopy);
+    }
+  };
 
   const searchParams = useSearchParams();
 
@@ -35,11 +50,14 @@ const EditDiagram = (props: Props) => {
       const diagramIdParam = searchParams.get("id");
       const diagramId =
         diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
-      let diagram: Diagram | undefined = undefined;
+      let diagramData: Diagram | undefined = undefined;
       if (diagramId !== null) {
-        diagram = await DiagramStore.getDiagram(diagramId);
+        diagramData = await DiagramStore.getDiagram(diagramId);
       }
-      setDiagram(diagram);
+      setDiagram(diagramData);
+      if (diagramData) {
+        setDisplayName(diagramData.displayName);
+      }
     }
     fetchData();
   }, [searchParams]);
@@ -56,7 +74,7 @@ const EditDiagram = (props: Props) => {
 
           <Input
             placeholder="Diagram name"
-            value={diagram?.displayName}
+            value={displayName}
             onChange={nameChangeHandler}
           />
         </div>
@@ -79,7 +97,7 @@ const EditDiagram = (props: Props) => {
       </div>
       <Separator decorative={true} />
 
-      <DiagramEditor diagram={diagram} />
+      <DiagramEditor diagram={diagram} onDiagramChange={diagramChangeHandler} />
     </>
   );
 };

@@ -32,11 +32,11 @@ const ViewDiagram = (props: Props) => {
       const diagramIdParam = searchParams.get("id");
       const diagramId =
         diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
-      let diagram: Diagram | undefined = undefined;
+      let diagramData: Diagram | undefined = undefined;
       if (diagramId !== null) {
-        diagram = await DiagramStore.getDiagram(diagramId);
+        diagramData = await DiagramStore.getDiagram(diagramId);
       }
-      setDiagram(diagram);
+      setDiagram(diagramData);
     }
     fetchData();
   }, [searchParams]);

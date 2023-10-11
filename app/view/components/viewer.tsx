@@ -34,14 +34,15 @@ const DiagramViewer = (props: Props) => {
     if (viewerRef.current === null) {
       const viewer = new mjsdv.DiagramViewer();
       containerRef.current?.appendChild(viewer);
-      // mjs diagram bug workaround: can only set stencil set after appending to the parent
-      viewer.stencilSet = diagramType;
-      viewer.autoScaling = "both";
-      if (props.diagram && props.diagram.diagramContent) {
-        viewer.show(props.diagram.diagramContent);
-      }
       viewerRef.current = viewer;
     }
+    // mjs diagram bug workaround: can only set stencil set after appending to the parent
+    viewerRef.current.stencilSet = diagramType;
+    viewerRef.current.autoScaling = "both";
+    if (props.diagram && props.diagram.diagramContent) {
+      viewerRef.current.show(props.diagram.diagramContent);
+    }
+
   });
 
   return (

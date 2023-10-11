@@ -323,4 +323,12 @@ export class DiagramStore {
 
     return await db.add("diagrams", diagram);
   }
+
+  public static async saveDiagram(diagram: Diagram): Promise<number> {
+    const db = await this.getDB();
+
+    diagram.modified = new Date();
+
+    return await db.put("diagrams", diagram);
+  }
 }

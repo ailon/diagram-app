@@ -12,9 +12,14 @@ import { Diagram } from "@/lib/data";
 
 interface Props {
   diagram?: Diagram;
+  onDiagramChange: (diagram: mjsdcore.DiagramState) => void;
 };
 
 const DiagramEditor = (props: Props) => {
+  const handleDiagramChange = (ev: CustomEvent<mjsde.DiagramEditorEventData>) => {
+    props.onDiagramChange(ev.detail.editor.getState());
+  }
+
   const containerRef = useRef<HTMLDivElement>(null);
   const editorRef = useRef<mjsde.DiagramEditor | null>(null);
 
@@ -45,14 +50,16 @@ const DiagramEditor = (props: Props) => {
       const editor = document.createElement(
         "mjs-diagram-editor"
       ) as mjsde.DiagramEditor;
-      containerRef.current?.appendChild(editor);
       // mjs diagram bug workaround: can only set stencil set after appending to the parent
-      editor.stencilEditorSet = diagramType;
-      if (props.diagram && props.diagram.diagramContent) {
-        editor.restoreState(props.diagram.diagramContent);
-      }
+      containerRef.current?.appendChild(editor);
       editorRef.current = editor;
     }
+    editorRef.current.addEventListener('statechange', handleDiagramChange)
+    editorRef.current.stencilEditorSet = diagramType;
+    if (props.diagram && props.diagram.diagramContent) {
+      editorRef.current.restoreState(props.diagram.diagramContent);
+    }
+
   });
 
   return (
