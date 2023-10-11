@@ -17,7 +17,6 @@ export default function RootLayout({
     <html lang="en">
       <body className="m-0 bg-white">
         <div className="flex flex-col h-screen max-h-screen">
-          <Header />
           {children}
           <div className="text-center text-sm text-muted-foreground">
             <Separator decorative={true} />

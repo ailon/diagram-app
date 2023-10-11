@@ -1,10 +1,13 @@
 import { Separator } from "@/components/ui/separator";
 import DiagramList from "./components/diagram-list";
 import NewDiagramButton from "./components/new-diagram-button";
+import Header from "@/components/header";
 
 export default function Home() {
   return (
     <>
+      <Header />
+
       <div className="w-6/12 mx-auto my-10">
         <h1 className="text-xl text-purple-600">Create diagrams</h1>
         <p>
