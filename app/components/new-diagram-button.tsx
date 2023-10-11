@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import DiagramTypeCard from "./diagram-type-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { DiagramType } from "@/lib/data";
 
 const diagramTypes: DiagramType[] = [
   {

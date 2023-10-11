@@ -27,7 +27,8 @@ const EditDiagram = (props: Props) => {
   };
 
   const searchParams = useSearchParams();
-  const diagramId = searchParams.get("id");
+  const diagramIdParam = searchParams.get("id");
+  const diagramId = diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
   let diagram: Diagram | undefined = undefined;
   if (diagramId !== null) {
     diagram = DiagramStore.getDiagram(diagramId);

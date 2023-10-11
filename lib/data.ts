@@ -1,7 +1,7 @@
 import { DiagramState } from "@markerjs/mjs-diagram/core";
 
 export interface Diagram {
-  id: string;
+  id?: number;
   displayName: string;
   diagramType: string;
   diagramContent?: DiagramState;

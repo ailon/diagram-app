@@ -6,12 +6,12 @@ export class DiagramStore {
     const numberOfDiagrams = Math.round(Math.random() * 30);
     const result: Diagram[] = [];
     for (let i = 0; i < numberOfDiagrams; i++) {
-      result.push(DiagramStore.getDiagram(i.toString()));
+      result.push(DiagramStore.getDiagram(i));
     }
     return result;
   }
 
-  public static getDiagram(id: string): Diagram {
+  public static getDiagram(id: number): Diagram {
     const diagram: DiagramState = {
       width: 560,
       height: 900,
@@ -278,7 +278,7 @@ export class DiagramStore {
       ],
     };
     return {
-      id: `${id}`,
+      id: id,
       diagramType: 'flowchart',
       displayName: `Flowchart #${id}`,
       created: new Date(),
