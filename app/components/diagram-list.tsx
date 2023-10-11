@@ -1,7 +1,10 @@
-import React from "react";
+"use client"
+
+import React, { useEffect, useState } from "react";
 import DiagramCard from "./diagram-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { DiagramStore } from "@/lib/dummy-data";
+import { DiagramStore } from "@/lib/db";
+import { Diagram } from "@/lib/data";
 
 // const data: Diagram[] = [
 //   {
@@ -29,11 +32,21 @@ import { DiagramStore } from "@/lib/dummy-data";
 type Props = {};
 
 const DiagramList = (props: Props) => {
-  const data = DiagramStore.getDiagrams();
+  const [diagrams, setDiagrams] = useState<Diagram[] | undefined>(undefined);
+
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await DiagramStore.getDiagrams();
+      setDiagrams(data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <ScrollArea className="flex flex-1 p-4">
       <div className="flex flex-wrap items-start content-start">
-        {data.map((d) => (
+        {diagrams?.map((d) => (
           <DiagramCard key={d.id} diagram={d} />
         ))}
       </div>

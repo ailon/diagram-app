@@ -1,17 +1,43 @@
 import { DiagramState, TextStencilState } from "@markerjs/mjs-diagram/core";
 import { Diagram } from "./data";
 
+import { openDB, DBSchema, IDBPDatabase } from 'idb';
+
+interface DiagramsDB extends DBSchema {
+  diagrams: {
+    value: Diagram;
+    key: number;
+    indexes: { 'by-modified-date': Date };
+  };
+}
+
 export class DiagramStore {
-  public static getDiagrams(): Diagram[] {
-    const numberOfDiagrams = Math.round(Math.random() * 30);
-    const result: Diagram[] = [];
-    for (let i = 0; i < numberOfDiagrams; i++) {
-      result.push(DiagramStore.getDiagram(i));
+  private static async getDB(): Promise<IDBPDatabase<DiagramsDB>> {
+    const db = await openDB<DiagramsDB>('diagrams-db', 1, {
+      upgrade(db) {
+        const productStore = db.createObjectStore('diagrams', {
+          keyPath: 'id',
+          autoIncrement: true
+        });
+        productStore.createIndex('by-modified-date', 'modified');
+      },
+    });    
+    return db;
+  }
+  public static async getDiagrams(): Promise<Diagram[]> {
+    const db = await this.getDB();
+
+    const diagrams = await db.getAll("diagrams");
+
+    if (diagrams.length === 0) {
+      await this.addDemoDiagram();
+      return await db.getAll("diagrams");
     }
-    return result;
+
+    return diagrams.sort((d1, d2) => d1.modified < d2.modified ? 1 : -1);
   }
 
-  public static getDiagram(id: number): Diagram {
+  public static async addDemoDiagram(): Promise<number> {
     const diagram: DiagramState = {
       width: 560,
       height: 900,
@@ -277,13 +303,24 @@ export class DiagramStore {
         },
       ],
     };
-    return {
-      id: id,
+    return await this.addDiagram({
       diagramType: 'flowchart',
-      displayName: `Flowchart #${id}`,
+      displayName: `Sample flowchart`,
       created: new Date(),
       modified: new Date(),
       diagramContent: diagram
-    };
+    });    
+  }
+
+  public static async getDiagram(id: number): Promise<Diagram | undefined> {
+    const db = await this.getDB();
+
+    return await db.get("diagrams", id);
+  }
+
+  public static async addDiagram(diagram: Diagram): Promise<number> {
+    const db = await this.getDB();
+
+    return await db.add("diagrams", diagram);
   }
 }

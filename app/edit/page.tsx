@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Cross1Icon, HomeIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import { Input } from "@/components/ui/input";
 import { useSearchParams } from "next/navigation";
 import { Diagram } from "@/lib/data";
-import { DiagramStore } from "@/lib/dummy-data";
+import { DiagramStore } from "@/lib/db";
 // import DiagramEditor from './components/editor';
 
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
@@ -26,13 +26,23 @@ const EditDiagram = (props: Props) => {
     console.log(el.target.value);
   };
 
+  const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
+
   const searchParams = useSearchParams();
-  const diagramIdParam = searchParams.get("id");
-  const diagramId = diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
-  let diagram: Diagram | undefined = undefined;
-  if (diagramId !== null) {
-    diagram = DiagramStore.getDiagram(diagramId);
-  }
+
+  useEffect(() => {
+    async function fetchData() {
+      const diagramIdParam = searchParams.get("id");
+      const diagramId =
+        diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
+      let diagram: Diagram | undefined = undefined;
+      if (diagramId !== null) {
+        diagram = await DiagramStore.getDiagram(diagramId);
+      }
+      setDiagram(diagram);
+    }
+    fetchData();
+  }, [searchParams]);
 
   return (
     <>

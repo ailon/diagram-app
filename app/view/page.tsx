@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Diagram } from "@/lib/data";
-import { DiagramStore } from "@/lib/dummy-data";
+import { DiagramStore } from "@/lib/db";
 import {
   Cross1Icon,
   HomeIcon,
@@ -13,7 +13,7 @@ import {
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
 const DiagramViewer = dynamic(() => import("./components/viewer"), {
@@ -23,13 +23,23 @@ const DiagramViewer = dynamic(() => import("./components/viewer"), {
 interface Props {}
 
 const ViewDiagram = (props: Props) => {
+  const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
+
   const searchParams = useSearchParams();
-  const diagramIdParam = searchParams.get("id");
-  const diagramId = diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
-  let diagram: Diagram | undefined = undefined;
-  if (diagramId !== null) {
-    diagram = DiagramStore.getDiagram(diagramId);
-  }
+
+  useEffect(() => {
+    async function fetchData() {
+      const diagramIdParam = searchParams.get("id");
+      const diagramId =
+        diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
+      let diagram: Diagram | undefined = undefined;
+      if (diagramId !== null) {
+        diagram = await DiagramStore.getDiagram(diagramId);
+      }
+      setDiagram(diagram);
+    }
+    fetchData();
+  }, [searchParams]);
 
   return (
     <>

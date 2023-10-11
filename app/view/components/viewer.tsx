@@ -7,13 +7,7 @@ import * as mindmap from "@markerjs/mjs-diagram/stencilsets/mindmap/mindmap";
 import * as flowchart from "@markerjs/mjs-diagram/stencilsets/flowchart/flowchart";
 import * as orgchart from "@markerjs/mjs-diagram/stencilsets/orgchart/orgchart";
 import * as network from "@markerjs/mjs-diagram/stencilsets/network/network";
-import { useSearchParams } from "next/navigation";
-import { DiagramStore } from "@/lib/dummy-data";
 import { Diagram } from "@/lib/data";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Cross1Icon, HomeIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
-import { Separator } from "@/components/ui/separator";
 
 type Props = {
   diagram?: Diagram;
