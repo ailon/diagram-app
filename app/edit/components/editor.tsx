@@ -8,8 +8,11 @@ import * as flowchart from "@markerjs/mjs-diagram/stencilsets/flowchart/flowchar
 import * as orgchart from "@markerjs/mjs-diagram/stencilsets/orgchart/orgchart";
 import * as network from "@markerjs/mjs-diagram/stencilsets/network/network";
 import { useSearchParams } from "next/navigation";
+import { Diagram } from "@/lib/data";
 
-type Props = {};
+interface Props {
+  diagram?: Diagram;
+};
 
 const DiagramEditor = (props: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,9 +27,15 @@ const DiagramEditor = (props: Props) => {
   ];
 
   let diagramType = mjsde.basicStencilEditorSet;
+  let diagramTypeName = 'core';
 
   const searchParams = useSearchParams();
-  const diagramTypeName = searchParams.get('type');
+
+  if (props.diagram) {
+    diagramTypeName = props.diagram.diagramType;
+  } else {
+    diagramTypeName = searchParams.get('type') ?? diagramTypeName;
+  }
   if (diagramTypeName) {
     diagramType = diagramTypes.find(t => t.id === diagramTypeName) ?? mjsde.basicStencilEditorSet;
   }
@@ -39,6 +48,9 @@ const DiagramEditor = (props: Props) => {
       containerRef.current?.appendChild(editor);
       // mjs diagram bug workaround: can only set stencil set after appending to the parent
       editor.stencilEditorSet = diagramType;
+      if (props.diagram && props.diagram.diagramContent) {
+        editor.restoreState(props.diagram.diagramContent);
+      }
       editorRef.current = editor;
     }
   });

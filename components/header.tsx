@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
+import { QuestionMarkIcon } from "@radix-ui/react-icons";
 
 type Props = {};
 
@@ -16,7 +17,9 @@ const Header = (props: Props) => {
           Diagrams
         </Link>
         <div className="flex flex-1 justify-end">
-          <Button variant={"link"}>?</Button>
+          <Button variant={"ghost"} className="rounded-full" size={"icon"}>
+            <QuestionMarkIcon />
+          </Button>
         </div>
       </div>
       <Separator decorative={true} />

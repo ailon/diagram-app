@@ -10,8 +10,14 @@ import * as network from "@markerjs/mjs-diagram/stencilsets/network/network";
 import { useSearchParams } from "next/navigation";
 import { DiagramStore } from "@/lib/dummy-data";
 import { Diagram } from "@/lib/data";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Cross1Icon, HomeIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
+import { Separator } from "@/components/ui/separator";
 
-type Props = {};
+type Props = {
+  diagram?: Diagram;
+};
 
 const DiagramViewer = (props: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,16 +32,9 @@ const DiagramViewer = (props: Props) => {
   ];
 
   let diagramType = mjsdcore.basicStencilSet;
-
-  const searchParams = useSearchParams();
-  const diagramId = searchParams.get('id');
-  let diagram: Diagram;
-  if (diagramId !== null) {
-    diagram = DiagramStore.getDiagram(diagramId);
-    // @todo
-    //diagramType = diagramTypes.find(t => t. === diagramTypeName) ?? mjsde.basicStencilEditorSet;
-    diagramType = flowchart.flowchartStencilSet;
-  }
+  // @todo
+  //diagramType = diagramTypes.find(t => t. === diagramTypeName) ?? mjsde.basicStencilEditorSet;
+  diagramType = flowchart.flowchartStencilSet;
 
   useEffect(() => {
     if (viewerRef.current === null) {
@@ -44,8 +43,8 @@ const DiagramViewer = (props: Props) => {
       // mjs diagram bug workaround: can only set stencil set after appending to the parent
       viewer.stencilSet = diagramType;
       viewer.autoScaling = "both";
-      if (diagram && diagram.diagramContent) {
-        viewer.show(diagram.diagramContent)
+      if (props.diagram && props.diagram.diagramContent) {
+        viewer.show(props.diagram.diagramContent);
       }
       viewerRef.current = viewer;
     }
