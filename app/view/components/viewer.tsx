@@ -43,7 +43,6 @@ const DiagramViewer = (props: Props) => {
     viewerRef.current.stencilSet = diagramType;
     viewerRef.current.autoScaling = "both";
     if (props.diagram && props.diagram.diagramContent) {
-      console.log(JSON.stringify(props.diagram.diagramContent));
       viewerRef.current.show(props.diagram.diagramContent);
     }
 
