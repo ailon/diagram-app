@@ -1,7 +1,13 @@
 import { Separator } from "@/components/ui/separator";
-import DiagramList from "./components/diagram-list";
 import NewDiagramButton from "./components/new-diagram-button";
 import Header from "@/components/header";
+import dynamic from "next/dynamic";
+
+// got to import dynamically because otherwise next tries to bundle toolbar on the server
+const DiagramList = dynamic(() => import("./components/diagram-list"), {
+  ssr: false,
+});
+
 
 export default function Home() {
   return (
