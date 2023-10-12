@@ -331,4 +331,11 @@ export class DiagramStore {
 
     return await db.put("diagrams", diagram);
   }
+
+  public static async deleteDiagram(diagramId: number): Promise<void> {
+    const db = await this.getDB();
+
+    return await db.delete("diagrams", diagramId);
+  }
+
 }

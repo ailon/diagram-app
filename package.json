@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@markerjs/mjs-diagram": "^1.2.0",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-scroll-area": "^1.0.5",

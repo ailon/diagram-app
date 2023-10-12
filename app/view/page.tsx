@@ -9,11 +9,13 @@ import {
   HomeIcon,
   Pencil2Icon,
   QuestionMarkIcon,
+  TrashIcon,
 } from "@radix-ui/react-icons";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import DeleteButton from "./components/delete-button";
 
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
 const DiagramViewer = dynamic(() => import("./components/viewer"), {
@@ -23,9 +25,17 @@ const DiagramViewer = dynamic(() => import("./components/viewer"), {
 interface Props {}
 
 const ViewDiagram = (props: Props) => {
+  const handleDelete = async () => {
+    if (diagram && diagram.id) {
+      await DiagramStore.deleteDiagram(diagram.id);
+      router.push('/');
+    }
+  }
+  
   const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
 
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     async function getData() {
@@ -53,6 +63,8 @@ const ViewDiagram = (props: Props) => {
           <p className="ml-4 text-lg">{diagram?.displayName}</p>
         </div>
         <div className="flex flex-1 justify-end">
+          <DeleteButton onDeleteConfirm={handleDelete} />
+          <Separator orientation="vertical" className="mx-3" />
           <Link
             href={{
               pathname: "/edit",
@@ -64,12 +76,9 @@ const ViewDiagram = (props: Props) => {
               Edit
             </Button>
           </Link>
-          <Button variant={"ghost"} className="rounded-full" size={"icon"}>
-            <QuestionMarkIcon />
-          </Button>
           <Link href="/">
             <Button variant={"ghost"} className="rounded-full" size={"icon"}>
-              <Cross1Icon />
+              <Cross1Icon className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>
