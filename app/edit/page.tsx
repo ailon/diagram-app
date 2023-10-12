@@ -24,7 +24,7 @@ const EditDiagram = (props: Props) => {
   const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
   const [displayName, setDisplayName] = useState<string>("");
 
-  const nameChangeHandler: React.ChangeEventHandler<HTMLInputElement> = async (
+  const handleNameChange: React.ChangeEventHandler<HTMLInputElement> = async (
     el
   ) => {
     if (diagram) {
@@ -35,7 +35,7 @@ const EditDiagram = (props: Props) => {
     }
   };
 
-  const diagramChangeHandler = async (diagramContent: DiagramState) => {
+  const handleDiagramChange = async (diagramContent: DiagramState) => {
     if (diagram) {
       const diagramCopy: Diagram = Object.assign(diagram);
       diagramCopy.diagramContent = diagramContent;
@@ -75,7 +75,7 @@ const EditDiagram = (props: Props) => {
           <Input
             placeholder="Diagram name"
             value={displayName}
-            onChange={nameChangeHandler}
+            onChange={handleNameChange}
           />
         </div>
         <div className="flex flex-1 justify-end">
@@ -97,7 +97,7 @@ const EditDiagram = (props: Props) => {
       </div>
       <Separator decorative={true} />
 
-      <DiagramEditor diagram={diagram} onDiagramChange={diagramChangeHandler} />
+      <DiagramEditor diagram={diagram} onDiagramChange={handleDiagramChange} />
     </>
   );
 };
