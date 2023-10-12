@@ -26,9 +26,12 @@ const DiagramViewer = (props: Props) => {
   ];
 
   let diagramType = mjsdcore.basicStencilSet;
-  // @todo
-  //diagramType = diagramTypes.find(t => t. === diagramTypeName) ?? mjsde.basicStencilEditorSet;
-  diagramType = flowchart.flowchartStencilSet;
+  let diagramTypeName = 'core';
+
+  if (props.diagram) {
+    diagramTypeName = props.diagram.diagramType;
+  }
+  diagramType = diagramTypes.find(t => t.id === diagramTypeName) ?? mjsdcore.basicStencilSet;
 
   useEffect(() => {
     if (viewerRef.current === null) {
