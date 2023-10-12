@@ -64,7 +64,7 @@ const EditDiagram = (props: Props) => {
 
   return (
     <>
-      <div className="w-screen flex p-2">
+      <div className="w-screen flex p-2 bg-gradient-to-br from-white to-violet-50 shadow">
         <div className="flex w-full">
           <Link href="/">
             <Button variant={"ghost"} className="rounded-full" size={"icon"}>

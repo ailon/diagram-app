@@ -57,4 +57,10 @@
   body {
     @apply bg-background text-foreground;
   }
+  a {
+    @apply text-violet-700;
+  }
+  a:hover {
+    @apply underline;
+  }
 }
