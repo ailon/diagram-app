@@ -28,7 +28,7 @@ const ViewDiagram = (props: Props) => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    async function fetchData() {
+    async function getData() {
       const diagramIdParam = searchParams.get("id");
       const diagramId =
         diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
@@ -38,7 +38,7 @@ const ViewDiagram = (props: Props) => {
       }
       setDiagram(diagramData);
     }
-    fetchData();
+    getData();
   }, [searchParams]);
 
   return (

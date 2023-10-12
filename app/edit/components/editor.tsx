@@ -59,7 +59,12 @@ const DiagramEditor = (props: Props) => {
     if (props.diagram && props.diagram.diagramContent) {
       editorRef.current.restoreState(props.diagram.diagramContent);
     }
-
+    return (() => {
+      if (editorRef.current !== null) {
+        // @todo missing event types for removeEventListener
+        // editorRef.current.removeEventListener('statechange', handleDiagramChange);
+      }
+    })
   });
 
   return (

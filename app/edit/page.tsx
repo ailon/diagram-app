@@ -46,7 +46,7 @@ const EditDiagram = (props: Props) => {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    async function fetchData() {
+    async function getData() {
       const diagramIdParam = searchParams.get("id");
       const diagramId =
         diagramIdParam !== null ? Number.parseInt(diagramIdParam) : null;
@@ -59,7 +59,7 @@ const EditDiagram = (props: Props) => {
         setDisplayName(diagramData.displayName);
       }
     }
-    fetchData();
+    getData();
   }, [searchParams]);
 
   return (
