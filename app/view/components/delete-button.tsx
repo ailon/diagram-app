@@ -36,7 +36,7 @@ const DeleteButton = (props: Props) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={props.onDeleteConfirm}>Delete</AlertDialogAction>
+          <AlertDialogAction className="bg-red-500 hover:bg-red-700" onClick={props.onDeleteConfirm}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
