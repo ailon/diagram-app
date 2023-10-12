@@ -14,4 +14,5 @@ export interface DiagramType {
   displayName: string;
   thumbnailSrc: string;
   description?: string;
+  preview?: DiagramState;
 }
