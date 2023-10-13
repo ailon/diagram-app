@@ -6,29 +6,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { DiagramStore } from "@/lib/db";
 import { Diagram } from "@/lib/data";
 
-// const data: Diagram[] = [
-//   {
-//     id: "diagram1",
-//     displayName: "Diagram 1",
-//     diagramType: "Mind Map",
-//   },
-//   {
-//     id: "diagram2",
-//     displayName: "Diagram 2",
-//     diagramType: "Mind Map",
-//   },
-//   {
-//     id: "diagram3",
-//     displayName: "Diagram 3",
-//     diagramType: "Mind Map",
-//   },
-//   {
-//     id: "diagram4",
-//     displayName: "Flowchart for the masses with long name",
-//     diagramType: "Flowchart",
-//   },
-// ];
-
 type Props = {};
 
 const DiagramList = (props: Props) => {
@@ -45,7 +22,7 @@ const DiagramList = (props: Props) => {
 
   return (
     <ScrollArea className="flex flex-1 p-4">
-      <div className="flex flex-wrap items-start content-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-x-6 gap-y-6">
         {diagrams?.map((d) => (
           <DiagramCard key={d.id} diagram={d} />
         ))}

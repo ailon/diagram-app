@@ -97,7 +97,9 @@ const EditDiagram = (props: Props) => {
       </div>
       <Separator decorative={true} />
 
-      <DiagramEditor diagram={diagram} onDiagramChange={handleDiagramChange} />
+      <div className="flex grow overflow-hidden m-4 bg-white rounded-lg">
+        <DiagramEditor diagram={diagram} onDiagramChange={handleDiagramChange} />
+      </div>
     </>
   );
 };

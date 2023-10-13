@@ -68,7 +68,7 @@ const DiagramEditor = (props: Props) => {
   });
 
   return (
-    <div ref={containerRef} className="flex flex-1 p-4 overflow-hidden"></div>
+    <div ref={containerRef} className="flex flex-1 overflow-hidden"></div>
   );
 };
 

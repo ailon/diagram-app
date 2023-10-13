@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Diagram, DiagramType } from "@/lib/data";
 import { DiagramStore } from "@/lib/db";
@@ -66,16 +66,16 @@ const DiagramTypeCard = ({ diagramType }: Props) => {
   return (
     <div
       onClick={handleNewDiagramClick}
-      className="space-y-3 w-[200px] m-2 border-gray-200 border h-[250px] p-2 rounded hover:border-violet-500 hover:shadow"
+      className="border-gray-200 border p-2 rounded hover:border-violet-500 hover:shadow bg-violet-50 w-[400px] sm:w-[200px] md:w-[120px] min-w-[120px] cursor-pointer"
     >
       <div
         ref={containerRef}
         className="bg-violet-100 h-auto w-auto object-cover transition-all hover:scale-105 aspect-square border border-violet-200 overflow-hidden rounded-sm pointer-events-none"
       ></div>
-      <div className="space-y-1 text-sm">
+      <div className="text-sm mt-2">
         <h3
           title={diagramType.displayName}
-          className="font-medium leading-none text-ellipsis overflow-hidden whitespace-nowrap"
+          className="font-medium text-ellipsis overflow-hidden whitespace-nowrap"
         >
           {diagramType.displayName}
         </h3>

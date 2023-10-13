@@ -51,14 +51,14 @@ const DiagramCard = ({ diagram }: Props) => {
   });
 
   return (
-    <Link href={`/view?id=${diagram.id}`}>
-      <div className="space-y-3 w-[200px] m-2 border-gray-200 border h-[250px] p-2 rounded hover:border-violet-500 hover:shadow bg-violet-50">
+    <Link href={`/view?id=${diagram.id}`} className="hover:no-underline">
+      <div className="border-gray-200 border p-2 rounded hover:border-violet-500 hover:shadow bg-violet-50">
         <div ref={containerRef} className="bg-violet-100 h-auto w-auto object-cover transition-all hover:scale-105 aspect-square border border-violet-200 overflow-hidden rounded-sm pointer-events-none">
         </div>
-        <div className="space-y-1 text-sm">
+        <div className="text-sm mt-2">
           <h3
             title={diagram.displayName}
-            className="font-medium leading-none text-ellipsis overflow-hidden whitespace-nowrap"
+            className="font-medium text-ellipsis overflow-hidden whitespace-nowrap"
           >
             {diagram.displayName}
           </h3>

@@ -85,7 +85,9 @@ const ViewDiagram = (props: Props) => {
       </div>
       <Separator decorative={true} />
 
-      <DiagramViewer diagram={diagram} />
+      <div className="flex grow overflow-hidden m-4 p-4 bg-white rounded-lg">
+        <DiagramViewer diagram={diagram} />
+      </div>
     </>
   );
 };

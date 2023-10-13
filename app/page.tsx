@@ -31,7 +31,9 @@ export default function Home() {
 
       <Separator className="my-10" decorative={true} />
 
-      <DiagramList />
+      <div className="flex grow overflow-hidden m-4 p-4 bg-white rounded-lg">
+        <DiagramList />
+      </div>
     </>
   );
 }

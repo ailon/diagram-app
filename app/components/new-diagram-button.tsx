@@ -868,7 +868,7 @@ const NewDiagramButton = (props: Props) => {
             Create a diagram!
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-h-full overflow-hidden">
+        <DialogContent className="max-h-full overflow-hidden bg-gradient-to-br from-white to-violet-100">
           <DialogHeader>
             <DialogTitle>Create a new diagram</DialogTitle>
             <DialogDescription>
@@ -876,13 +876,15 @@ const NewDiagramButton = (props: Props) => {
             </DialogDescription>
           </DialogHeader>
 
-          <ScrollArea className="flex overflow-hidden h-full max-h-[600px]">
-            <div className="flex w-full flex-wrap">
-              {diagramTypes.map((t) => {
-                return <DiagramTypeCard key={t.typeName} diagramType={t} />;
-              })}
-            </div>
-          </ScrollArea>
+          <div className="flex grow overflow-hidden p-4 bg-white rounded-lg">
+            <ScrollArea className="flex overflow-hidden h-full max-h-[600px]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-6">
+                {diagramTypes.map((t) => {
+                  return <DiagramTypeCard key={t.typeName} diagramType={t} />;
+                })}
+              </div>
+            </ScrollArea>
+          </div>
 
           <DialogFooter>
             <DialogClose asChild>
