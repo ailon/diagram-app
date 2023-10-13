@@ -1,0 +1,32 @@
+.diagramEdit {
+  /* toolbar button and text color */
+  --mjsdiae-fore-color: #1e293b;
+  /* accent color used for highlighting active elements */
+  --mjsdiae-accent-color: #7c3aed;
+  /* used for new item thumbnail fills */
+  --mjsdiae-accent-color2: #fef08a;
+  /* toolbar and toolbox background color */
+  --mjsdiae-background-color: #ede9fe;
+  /* toolbar button background on hover */
+  --mjsdiae-background-color-hover: #f5f3ff;
+  /* toolbar button border color */
+  --mjsdiae-border-color: #ede9fe;
+  /* toolbar button border color on hover */
+  --mjsdiae-border-color-hover: #ddd6fe;
+  /* border color for panels (toolbar, properties panel) */
+  --mjsdiae-panel-border-color: #c4b5fd;
+  /* separator color for panels in the property panel */
+  --mjsdiae-panel-separator-color: #f5f3ff;
+  /* background color for inputs */
+  --mjsdiae-input-background-color: white;
+  /* background color for inputs in focus */
+  --mjsdiae-input-background-color-focus: #f5f3ff;
+  /* input text color */
+  --mjsdiae-input-fore-color: #7c3aed;
+  /* new stencil box background color */
+  --mjsdiae-newstencil-background-color: #f5f3ff;
+  /* new stencil box background on hover */
+  --mjsdiae-newstencil-background-color-hover: #ddd6fe;
+  /* canvas around/behind the edited diagram document */
+  --mjsdiae-canvas-background-color: #f5f3ff;
+}

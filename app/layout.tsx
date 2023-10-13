@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="m-0 bg-gradient-to-br from-violet-50 to-violet-200">
-        <div className="flex flex-col h-screen max-h-screen">
+        <div className="flex flex-col h-screen min-h-[700px]">
           {children}
 
           <div className="flex  flex-col text-center text-sm text-muted-foreground bg-gradient-to-tl from-white to-violet-50 shadow">

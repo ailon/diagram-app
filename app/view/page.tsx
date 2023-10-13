@@ -17,6 +17,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import DeleteButton from "./components/delete-button";
 
+import styles from './view.module.css';
+
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
 const DiagramViewer = dynamic(() => import("./components/viewer"), {
   ssr: false,
@@ -54,17 +56,17 @@ const ViewDiagram = (props: Props) => {
   return (
     <>
       <div className="w-screen flex p-2 bg-gradient-to-br from-white to-violet-50 shadow">
-        <div className="flex w-full items-center">
+        <div className="flex w-full items-center shrink overflow-hidden">
           <Link href="/">
             <Button variant={"ghost"} className="rounded-full" size={"icon"}>
               <HomeIcon />
             </Button>
           </Link>
-          <p className="ml-4 text-lg">{diagram?.displayName}</p>
+          <p className="ml-4 text-lg whitespace-nowrap overflow-hidden shrink text-ellipsis">{diagram?.displayName}</p>
         </div>
-        <div className="flex flex-1 justify-end">
+        <div className="flex flex-1 justify-end grow">
           <DeleteButton onDeleteConfirm={handleDelete} />
-          <Separator orientation="vertical" className="mx-3" />
+          <Separator orientation="vertical" className="sm:mx-3" />
           <Link
             href={{
               pathname: "/edit",
@@ -72,8 +74,8 @@ const ViewDiagram = (props: Props) => {
             }}
           >
             <Button>
-              <Pencil2Icon className="mr-2 h-4 w-4" />
-              Edit
+              <Pencil2Icon className="sm:mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Edit</span>
             </Button>
           </Link>
           <Link href="/">
@@ -85,7 +87,7 @@ const ViewDiagram = (props: Props) => {
       </div>
       <Separator decorative={true} />
 
-      <div className="flex grow overflow-hidden m-4 p-4 bg-white rounded-lg">
+      <div className={`${styles.diagramView} flex grow overflow-hidden md:m-4 p-2 md:p-6 bg-white md:rounded-lg`}>
         <DiagramViewer diagram={diagram} />
       </div>
     </>

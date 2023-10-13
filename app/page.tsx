@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import Header from "@/components/header";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
 const DiagramList = dynamic(() => import("./components/diagram-list"), {
@@ -15,12 +16,12 @@ export default function Home() {
     <>
       <Header />
 
-      <div className="w-6/12 mx-auto my-10">
-        <h1 className="text-xl text-purple-600">Create diagrams</h1>
-        <p>
+      <div className="w-full xl:w-8/12 mx-auto px-10 my-10">
+        <h1 className="text-2xl lg:text-5xl text-violet-500 text-center mb-5">Create Diagrams</h1>
+        <p className="text-base lg:text-lg text-center">
           Create, edit, and share flowcharts, org charts, mind maps, network and
           other diagrams. Your diagrams are saved locally and aren&apos;t
-          transfered to any servers or services.
+          transfered to any servers or services. <Link href="/about">Learn more</Link>.
         </p>
       </div>
 
@@ -28,10 +29,7 @@ export default function Home() {
         <NewDiagramButton />
       </div>
 
-
-      <Separator className="my-10" decorative={true} />
-
-      <div className="flex grow overflow-hidden m-4 p-4 bg-white rounded-lg">
+      <div className="flex grow overflow-hidden m-4 p-4 bg-white rounded-lg mt-10">
         <DiagramList />
       </div>
     </>

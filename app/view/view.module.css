@@ -1,0 +1,18 @@
+.diagramView {
+  /* background color of the canvas behind and around the diagram document */
+  --mjsdiav-canvas-background-color: #f5f3ff;
+  /* CSS filter to be added to the canvas for effects like drop shadow */
+  --mjsdiav-canvas-filter: drop-shadow(4px 4px 10px #ddd6fe);
+  /* background color for the zooming controls toolbar */
+  --mjsdiav-tb-background-color: #7c3aed;
+  /* border color for the zooming controls toolbar */
+  --mjsdiav-tb-border-color: #7c3aed;
+  /* fore color for the zooming controls toolbar */
+  --mjsdiav-tb-fore-color: #fff;
+  /* toolbar button border color */
+  --mjsdiav-tb-button-border-color: #7c3aed;
+  /* toolbar button background color on hover */
+  --mjsdiav-tb-background-color-hover: #8b5cf6;
+  /* toolbar button border color on hover */
+  --mjsdiav-tb-button-border-color-hover: #8b5cf6;
+}

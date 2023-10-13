@@ -56,19 +56,19 @@ const DiagramEditor = (props: Props) => {
     }
     editorRef.current.addEventListener('statechange', handleDiagramChange)
     editorRef.current.stencilEditorSet = diagramType;
+    editorRef.current.hideToolbarButtons('save');
     if (props.diagram && props.diagram.diagramContent) {
       editorRef.current.restoreState(props.diagram.diagramContent);
     }
     return (() => {
       if (editorRef.current !== null) {
-        // @todo missing event types for removeEventListener
-        // editorRef.current.removeEventListener('statechange', handleDiagramChange);
+        editorRef.current.removeEventListener('statechange', handleDiagramChange);
       }
     })
   });
 
   return (
-    <div ref={containerRef} className="flex flex-1 overflow-hidden"></div>
+    <div ref={containerRef} className="flex flex-1 overflow-hidden rounded-lg border-violet-300 border-2"></div>
   );
 };
 

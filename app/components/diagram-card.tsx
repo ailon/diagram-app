@@ -58,7 +58,7 @@ const DiagramCard = ({ diagram }: Props) => {
         <div className="text-sm mt-2">
           <h3
             title={diagram.displayName}
-            className="font-medium text-ellipsis overflow-hidden whitespace-nowrap"
+            className="font-medium text-ellipsis overflow-hidden whitespace-nowrap text-slate-900"
           >
             {diagram.displayName}
           </h3>

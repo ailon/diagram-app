@@ -22,8 +22,8 @@ const DeleteButton = (props: Props) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant={"ghost"} className="hover:text-red-500">
-          <TrashIcon className="mr-2 h-4 w-4" />
-          Delete
+          <TrashIcon className="sm:mr-2 h-4 w-4" />
+          <span className="hidden sm:inline">Delete</span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

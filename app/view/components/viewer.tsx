@@ -41,7 +41,7 @@ const DiagramViewer = (props: Props) => {
     }
     // mjs diagram bug workaround: can only set stencil set after appending to the parent
     viewerRef.current.stencilSet = diagramType;
-    viewerRef.current.autoScaling = "both";
+    viewerRef.current.autoScaling = "down";
     if (props.diagram && props.diagram.diagramContent) {
       viewerRef.current.show(props.diagram.diagramContent);
     }
@@ -49,7 +49,7 @@ const DiagramViewer = (props: Props) => {
   });
 
   return (
-    <div ref={containerRef} className="flex flex-1 p-4 overflow-hidden"></div>
+    <div ref={containerRef} className="flex flex-1 overflow-hidden rounded-lg"></div>
   );
 };
 

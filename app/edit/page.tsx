@@ -11,7 +11,8 @@ import { useSearchParams } from "next/navigation";
 import { Diagram } from "@/lib/data";
 import { DiagramStore } from "@/lib/db";
 import { DiagramState } from "@markerjs/mjs-diagram";
-// import DiagramEditor from './components/editor';
+
+import styles from './edit.module.css';
 
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
 const DiagramEditor = dynamic(() => import("./components/editor"), {
@@ -76,6 +77,7 @@ const EditDiagram = (props: Props) => {
             placeholder="Diagram name"
             value={displayName}
             onChange={handleNameChange}
+            className="focus:bg-white"
           />
         </div>
         <div className="flex flex-1 justify-end">
@@ -97,7 +99,7 @@ const EditDiagram = (props: Props) => {
       </div>
       <Separator decorative={true} />
 
-      <div className="flex grow overflow-hidden m-4 bg-white rounded-lg">
+      <div className={`${styles.diagramEdit} flex grow overflow-hidden m-4 p-6 bg-white rounded-lg`}>
         <DiagramEditor diagram={diagram} onDiagramChange={handleDiagramChange} />
       </div>
     </>
