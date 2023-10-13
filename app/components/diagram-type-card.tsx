@@ -79,7 +79,7 @@ const DiagramTypeCard = ({ diagramType }: Props) => {
         >
           {diagramType.displayName}
         </h3>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-muted-foreground mb-0">
           {diagramType.description}
         </p>
       </div>

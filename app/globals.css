@@ -63,4 +63,15 @@
   a:hover {
     @apply underline;
   }
+  h1 {
+    @apply text-2xl mb-6;
+  }
+
+  h2 {
+    @apply text-xl mb-4 mt-8;
+  }
+
+  p {
+    @apply mb-4;
+  }
 }

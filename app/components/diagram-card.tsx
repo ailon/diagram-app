@@ -62,7 +62,7 @@ const DiagramCard = ({ diagram }: Props) => {
           >
             {diagram.displayName}
           </h3>
-          <p className="text-xs text-muted-foreground">{diagram.diagramType}</p>
+          <p className="text-xs text-muted-foreground mb-0">{diagram.diagramType}</p>
         </div>
       </div>
     </Link>
