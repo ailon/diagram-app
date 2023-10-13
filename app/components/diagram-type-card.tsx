@@ -1,3 +1,5 @@
+"use client"
+
 import { Diagram, DiagramType } from "@/lib/data";
 import { DiagramStore } from "@/lib/db";
 import Link from "next/link";

@@ -1,5 +1,4 @@
 import { Separator } from "@/components/ui/separator";
-import NewDiagramButton from "./components/new-diagram-button";
 import Header from "@/components/header";
 import dynamic from "next/dynamic";
 
@@ -7,7 +6,9 @@ import dynamic from "next/dynamic";
 const DiagramList = dynamic(() => import("./components/diagram-list"), {
   ssr: false,
 });
-
+const NewDiagramButton = dynamic(() => import("./components/new-diagram-button"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
