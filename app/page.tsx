@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import Header from "@/components/header";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import ImportDiagramButton from "./components/import-diagram-button";
 
 // got to import dynamically because otherwise next tries to bundle toolbar on the server
 const DiagramList = dynamic(() => import("./components/diagram-list"), {
@@ -25,8 +26,9 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center flex-col mx-auto">
         <NewDiagramButton />
+        <ImportDiagramButton />
       </div>
 
       <div className="flex grow overflow-hidden m-4 p-4 bg-white rounded-lg mt-10">
