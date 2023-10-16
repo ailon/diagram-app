@@ -38,6 +38,20 @@ const ViewDiagram = (props: Props) => {
     }
   };
 
+  const handleFork = async () => {
+    if (diagram && diagram.id && diagram.diagramContent) {
+      const forkedDiagram: Diagram = {
+        diagramType: diagram.diagramType,
+        displayName: `Copy of ${diagram.displayName}`,
+        diagramContent: diagram.diagramContent,
+        created: new Date(),
+        modified: new Date(),
+      }
+      const newId = await DiagramStore.addDiagram(forkedDiagram);
+      router.push(`/edit?id=${newId}`);
+    }
+  }
+
   const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
 
   const searchParams = useSearchParams();
@@ -88,7 +102,7 @@ const ViewDiagram = (props: Props) => {
           <Button variant={"ghost"} className="rounded-full" size={"icon"}>
             <Share1Icon className="h-4 w-4" />
           </Button>
-          <Button variant={"ghost"} className="rounded-full" size={"icon"}>
+          <Button onClick={handleFork} variant={"ghost"} className="rounded-full" size={"icon"}>
             <CopyIcon className="h-4 w-4" />
           </Button>
 
