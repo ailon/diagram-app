@@ -10,17 +10,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { PlusIcon, UploadIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+import { UploadIcon } from "@radix-ui/react-icons";
 import React, { MouseEventHandler, useRef, useState } from "react";
-import DiagramTypeCard from "./diagram-type-card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Diagram, DiagramType } from "@/lib/data";
-import {
-  ImageStencilState,
-  TextStencilState,
-} from "@markerjs/mjs-diagram/core";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { DiagramStore } from "@/lib/db";

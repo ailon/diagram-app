@@ -47,28 +47,28 @@ const ViewDiagram = (props: Props) => {
         diagramContent: diagram.diagramContent,
         created: new Date(),
         modified: new Date(),
-      }
+      };
       const newId = await DiagramStore.addDiagram(forkedDiagram);
       router.push(`/edit?id=${newId}`);
     }
-  }
-  
+  };
+
   const handleDownload = () => {
     if (diagram && diagram.diagramContent) {
-      var content = new Blob([JSON.stringify(diagram)], {type: 'text/plain'});
-      const link = document.createElement('a');
+      var content = new Blob([JSON.stringify(diagram)], { type: "text/plain" });
+      const link = document.createElement("a");
 
-      link.setAttribute('href', window.URL.createObjectURL(content));
-      link.setAttribute('download', `${diagram.displayName}.mjsd`);
-  
-      link.style.display = 'none';
+      link.setAttribute("href", window.URL.createObjectURL(content));
+      link.setAttribute("download", `${diagram.displayName}.mjsd`);
+
+      link.style.display = "none";
       document.body.appendChild(link);
-  
+
       link.click();
-  
-      document.body.removeChild(link);      
+
+      document.body.removeChild(link);
     }
-  }
+  };
 
   const [diagram, setDiagram] = useState<Diagram | undefined>(undefined);
 
@@ -107,23 +107,46 @@ const ViewDiagram = (props: Props) => {
           <Separator orientation="vertical" className="sm:mx-3" />
 
           <a href="https://markerjs.com/products/diagram/" title="MJS Diagram">
-          <Button variant={"ghost"} className="rounded-full" size={"icon"}>
-            <Image src={'./markerjs-logo-m.svg'} alt="MJS Diagram" width="24" height="24" className="h-4 w-4"  />
-          </Button>
+            <Button variant={"ghost"} className="rounded-full" size={"icon"}>
+              <Image
+                src={"./markerjs-logo-m.svg"}
+                alt="MJS Diagram"
+                width="24"
+                height="24"
+                className="h-4 w-4"
+              />
+            </Button>
           </a>
-          
+
           <a href="https://github.com/ailon/diagram-app" title="MJS Diagram">
-          <Button variant={"ghost"} className="rounded-full" size={"icon"}>
-            <GitHubLogoIcon className="h-4 w-4 text-black" />
-          </Button>
+            <Button variant={"ghost"} className="rounded-full" size={"icon"}>
+              <GitHubLogoIcon className="h-4 w-4 text-black" />
+            </Button>
           </a>
-          <Button onClick={handleDownload} variant={"ghost"} className="rounded-full" size={"icon"}>
+          <Button
+            onClick={handleDownload}
+            variant={"ghost"}
+            className="rounded-full"
+            size={"icon"}
+          >
             <DownloadIcon className="h-4 w-4" />
           </Button>
-          <Button variant={"ghost"} className="rounded-full" size={"icon"}>
-            <Share1Icon className="h-4 w-4" />
-          </Button>
-          <Button onClick={handleFork} variant={"ghost"} className="rounded-full" size={"icon"}>
+          <Link
+            href={{
+              pathname: "/share",
+              query: { id: diagram?.id },
+            }}
+          >
+            <Button variant={"ghost"} className="rounded-full" size={"icon"}>
+              <Share1Icon className="h-4 w-4 text-black" />
+            </Button>
+          </Link>
+          <Button
+            onClick={handleFork}
+            variant={"ghost"}
+            className="rounded-full"
+            size={"icon"}
+          >
             <CopyIcon className="h-4 w-4" />
           </Button>
 
