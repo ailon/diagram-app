@@ -7,6 +7,7 @@ import { DiagramStore } from "@/lib/db";
 import {
   CopyIcon,
   Cross1Icon,
+  DownloadIcon,
   GitHubLogoIcon,
   HomeIcon,
   Pencil2Icon,
@@ -49,6 +50,23 @@ const ViewDiagram = (props: Props) => {
       }
       const newId = await DiagramStore.addDiagram(forkedDiagram);
       router.push(`/edit?id=${newId}`);
+    }
+  }
+  
+  const handleDownload = () => {
+    if (diagram && diagram.diagramContent) {
+      var content = new Blob([JSON.stringify(diagram)], {type: 'text/plain'});
+      const link = document.createElement('a');
+
+      link.setAttribute('href', window.URL.createObjectURL(content));
+      link.setAttribute('download', `${diagram.displayName}.mjsd`);
+  
+      link.style.display = 'none';
+      document.body.appendChild(link);
+  
+      link.click();
+  
+      document.body.removeChild(link);      
     }
   }
 
@@ -99,6 +117,9 @@ const ViewDiagram = (props: Props) => {
             <GitHubLogoIcon className="h-4 w-4 text-black" />
           </Button>
           </a>
+          <Button onClick={handleDownload} variant={"ghost"} className="rounded-full" size={"icon"}>
+            <DownloadIcon className="h-4 w-4" />
+          </Button>
           <Button variant={"ghost"} className="rounded-full" size={"icon"}>
             <Share1Icon className="h-4 w-4" />
           </Button>
