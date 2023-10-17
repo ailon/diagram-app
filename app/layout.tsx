@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Script from "next/script";
+import PlausibleProvider from 'next-plausible';
 
 export const metadata: Metadata = {
   title: "Diagrams by marker.js",
@@ -19,12 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="m-0 bg-gradient-to-br from-violet-50 to-violet-200">
+      <head>
+        <PlausibleProvider domain="diagrams.markerjs.com" />
         <Script id="show-banner">
           {`if (typeof navigator.serviceWorker !== 'undefined') {
               navigator.serviceWorker.register('sw.js')
           }`}
         </Script>
+      </head>
+      <body className="m-0 bg-gradient-to-br from-violet-50 to-violet-200">
         <div className="flex flex-col h-screen min-h-[700px]">
           {children}
 
