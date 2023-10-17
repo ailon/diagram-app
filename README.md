@@ -1,10 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Diagrams by marker.js
 
-## Getting Started
+This is both a standalone diagramming web application and a demo app for the
+[MJS Diagram](https://markerjs.com/products/diagram) library. It supports creation and editing
+of all the diagram types included with MJS Diagram - flowcharts, mind maps, org charts, network diagrams, and general purpose diagrams.
 
-First, run the development server:
+Diagrams created with the app are stored in the browser's IndexedDB and are never transferred to any servers.
+If you want to save your work and sync with other devices, export the diagram, save it to your cloud storage 
+and import on another machine.
 
-```bash
+## Credits
+
+Diagrams was created and is maintainted by [Alan Mendelevich](https://x.com/ailon).
+
+This app uses: 
+
+- [MJS Diagram]((https://markerjs.com/products/diagram/)) for diagram editing and viewing.
+- [Next.js](https://nextjs.org/) is the main framework the app is built on.
+- [shadcn/ui](https://ui.shadcn.com/), [Radix UI](https://www.radix-ui.com/), and [Tailwind CSS](https://tailwindcss.com/) for the UI.
+- [idb](https://github.com/jakearchibald/idb) for storing data in the browser&apos;s IndexedDB.
+
+## Cloning and running locally
+
+As this app is based on Next.js you can run the development version on your machine using the dev script in `package.json`.
+
+```
 npm run dev
 # or
 yarn dev
@@ -13,24 +32,9 @@ pnpm dev
 # or
 bun dev
 ```
+Open http://localhost:3000 with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## License
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This app is released under the [MIT License](./LICENSE)
