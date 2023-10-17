@@ -1,5 +1,10 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: 'About Diagrams by marker.js'
+}
 
 type Props = {};
 

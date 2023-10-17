@@ -4,13 +4,27 @@ import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Script from "next/script";
-import PlausibleProvider from 'next-plausible';
+import PlausibleProvider from "next-plausible";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://diagrams.markerjs.com'),
   title: "Diagrams by marker.js",
   description:
     "Create flowcharts, mind maps, org charts, network diagrams and more.",
   manifest: "/manifest.json",
+  openGraph: {
+    type: "website",
+    url: "https://diagrams.markerjs.com",
+    title: "Diagrams by marker.js",
+    description:
+      "Create flowcharts, mind maps, org charts, network diagrams and more.",
+    siteName: "Diagrams by marker.js",
+    images: ['/screenshots/frontpage.png', '/screenshots/view.png', '/screenshots/edit.png'],
+  },
+  twitter: {
+    card:'summary_large_image',
+    images: ['/screenshots/frontpage.png', '/screenshots/view.png', '/screenshots/edit.png'],
+  }
 };
 
 export default function RootLayout({
