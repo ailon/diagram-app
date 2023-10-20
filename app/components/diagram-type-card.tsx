@@ -66,7 +66,7 @@ const DiagramTypeCard = ({ diagramType }: Props) => {
   return (
     <div
       onClick={handleNewDiagramClick}
-      className="border-gray-200 border p-2 rounded hover:border-violet-500 hover:shadow bg-violet-50 w-[400px] sm:w-[200px] md:w-[120px] min-w-[120px] cursor-pointer"
+      className="border-gray-200 border p-2 rounded hover:border-violet-500 hover:shadow bg-violet-50 min-w-[120px] cursor-pointer"
     >
       <div
         ref={containerRef}
